@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{530ADBCA-CCF6-4482-AE27-688BA8419C0A}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{28EFC1C1-AAD9-4EEC-AD7B-99131830437B}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\AzureBytes1-WAWS-dev.json = PublishScripts\Configurations\AzureBytes1-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBits.Core", "AzureBits.Core\AzureBits.Core.csproj", "{1FA403DC-487F-4659-9B90-63D7C1027822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBits.ImageMessageWebJob", "AzureBits.ImageMessageWebJob\AzureBits.ImageMessageWebJob.csproj", "{F95FD8A1-A399-4670-BB9C-51084FFC8405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBits.Services", "AzureBits.Services\AzureBits.Services.csproj", "{680EA19F-7FFC-44DF-B63E-6FA5AE72AED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBits.Web", "AzureBits.Web\AzureBits.Web.csproj", "{D178781B-C7ED-4AD0-BFC8-D94F8556D5F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FA403DC-487F-4659-9B90-63D7C1027822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA403DC-487F-4659-9B90-63D7C1027822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA403DC-487F-4659-9B90-63D7C1027822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA403DC-487F-4659-9B90-63D7C1027822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95FD8A1-A399-4670-BB9C-51084FFC8405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95FD8A1-A399-4670-BB9C-51084FFC8405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95FD8A1-A399-4670-BB9C-51084FFC8405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95FD8A1-A399-4670-BB9C-51084FFC8405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{680EA19F-7FFC-44DF-B63E-6FA5AE72AED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{680EA19F-7FFC-44DF-B63E-6FA5AE72AED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{680EA19F-7FFC-44DF-B63E-6FA5AE72AED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680EA19F-7FFC-44DF-B63E-6FA5AE72AED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D178781B-C7ED-4AD0-BFC8-D94F8556D5F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D178781B-C7ED-4AD0-BFC8-D94F8556D5F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D178781B-C7ED-4AD0-BFC8-D94F8556D5F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D178781B-C7ED-4AD0-BFC8-D94F8556D5F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28EFC1C1-AAD9-4EEC-AD7B-99131830437B} = {530ADBCA-CCF6-4482-AE27-688BA8419C0A}
+	EndGlobalSection
+EndGlobal
