@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using AzureBits.Core.Extensions;
 using AzureBits.Core.Services;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
 
 namespace AzureBits.Web.Services
 {
@@ -17,35 +17,35 @@ namespace AzureBits.Web.Services
             _queueName = queueName;
         }
 
-        public Task AddMessageToQueueAsync(string messageId, T messageObject)
+        public async Task AddMessageToQueueAsync(string messageId, T messageObject)
         {
             var queue = GetQueue();
 
-            // serialize the payload for the message
-            var serializedMessage = messageObject.SerializeToByteArray();
+            // Convert to JSON
+            var jsonMessage = JsonConvert.SerializeObject(messageObject);
             
             // Create the actual queue message 
-            CloudQueueMessage message = new CloudQueueMessage(serializedMessage);
+            CloudQueueMessage message = new CloudQueueMessage(jsonMessage);
 
             // Add the message to the queue
-            return queue.AddMessageAsync(message);
+            await queue.AddMessageAsync(message);
         }
 
-        public T GetNextMessageFromQueue()
-        {
-            var queue = GetQueue();
+        //public T GetNextMessageFromQueue()
+        //{
+        //    var queue = GetQueue();
 
-            // Get the next message
-            CloudQueueMessage retrievedMessage = queue.GetMessage();
+        //    // Get the next message
+        //    CloudQueueMessage retrievedMessage = queue.GetMessage();
 
-            // deserialize to uploadedImage
-            T message = retrievedMessage.AsBytes.Deserialize<T>();
+        //    // deserialize to uploadedImage
+        //    T message = retrievedMessage.AsBytes.Deserialize<T>();
 
-            // delete the message from the queue
-            queue.DeleteMessage(retrievedMessage);
+        //    // delete the message from the queue
+        //    queue.DeleteMessage(retrievedMessage);
 
-            return message;
-        }
+        //    return message;
+        //}
 
         private CloudQueue GetQueue()
         {

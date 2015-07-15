@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace AzureBits.Core.Models
 {
@@ -15,15 +16,9 @@ namespace AzureBits.Core.Models
         public string Name { get; set; }
         public string ContentType { get; set; }
 
-        // no need to serialize the file bytes of the image to the queue (will be larger than 65k max)
-        [NonSerialized]
-        private byte[] _data;
-        public byte[] Data
-        {
-            get { return _data; }
-            set { _data = value; }
-        }
-
+        [JsonIgnore]
+        public byte[] Data { get; set; }
+        
         public string Url { get; set; }
         public List<Thumbnail> Thumbnails { get; set; }
     }

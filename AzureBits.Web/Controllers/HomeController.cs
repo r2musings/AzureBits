@@ -32,6 +32,8 @@ namespace AzureBits.Web.Controllers
                 HttpPostedFileBase file = Request.Files["uploadedFile"];
                 model = await _imageService.CreateUploadedImage(file);
                 await _imageService.AddImageToBlobStorageAsync(model);
+              //  var uploadMessage = new UploadedImageMessage(model);
+                  
                 await _queueService.AddMessageToQueueAsync(model.Name, model);
             }
 
@@ -39,5 +41,3 @@ namespace AzureBits.Web.Controllers
         }
     }
 }
-
-

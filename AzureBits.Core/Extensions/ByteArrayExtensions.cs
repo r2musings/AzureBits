@@ -30,6 +30,11 @@ namespace AzureBits.Core.Extensions
                 var binForm = new BinaryFormatter();
                 memStream.Write(byteArray, 0, byteArray.Length);
                 memStream.Seek(0, SeekOrigin.Begin);
+                if (memStream.Length == 0)
+                {
+                    return null;
+                }
+                
                 var obj = (T)binForm.Deserialize(memStream);
                 return obj;
             }
