@@ -11,11 +11,11 @@ namespace AzureBits.ImageMessageWebJob
 {
     public class Functions
     {
-        private static IKernel kernel = new StandardKernel();
-
+        private static readonly IKernel _kernel = new StandardKernel();
+        
         static Functions()
         {
-            kernel.Load(Assembly.GetExecutingAssembly());
+            _kernel.Load(Assembly.GetExecutingAssembly());
         }
 
         // This function will get triggered/executed when a new message is written 
@@ -25,18 +25,33 @@ namespace AzureBits.ImageMessageWebJob
             [Blob("images/{Name}", FileAccess.Read)] Stream originalImageStream, 
             TextWriter log)
         {
-             var _imageProcessor = kernel.Get<IImageProcessor>();
-
+            IImageProcessor _imageProcessor =_kernel.Get<IImageProcessor>();
+            IImageService _imageService = _kernel.Get<IImageService>();
+            
             if (originalImageStream != null && originalImageStream.Length > 0)
             {
                 var originalImage = new Bitmap(originalImageStream);
-                foreach (var thumbnail in uploadedImage.Thumbnails)
+                for (var i=0; i < uploadedImage.Thumbnails.Count; i++)
                 {
-                    var newImage = await _imageProcessor.CreateThumbnailFromOriginalAsync(originalImage, thumbnail);
+                    var thumbnail = uploadedImage.Thumbnails[i];
+                    var bitmap = await _imageProcessor.CreateThumbnailFromOriginalAsync(originalImage, thumbnail);
+                    var name = GetThumbnailName(uploadedImage.Name, i);
+                    await _imageService.AddBitmapToBlobStorageAsync(bitmap, name, uploadedImage.ContentType);
                 }
             }
             
             Console.WriteLine(uploadedImage.Url);
         }
+
+        private static string GetThumbnailName(string originalImageName, int index)
+        {
+            var lastPeriodIndex = originalImageName.LastIndexOf(".", StringComparison.CurrentCultureIgnoreCase);
+            var prefix = originalImageName.Substring(0, lastPeriodIndex);
+            var suffix = originalImageName.Substring(lastPeriodIndex + 1);
+            return string.Format("{0}_tn{1:D3}.{2}", prefix, index+1, suffix);
+
+        }
+
+
     }
 }

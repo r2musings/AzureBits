@@ -21,5 +21,6 @@ namespace AzureBits.Core.Models
         
         public string Url { get; set; }
         public List<Thumbnail> Thumbnails { get; set; }
+        public bool DeleteOriginalAfterProcessing { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web;
+using AzureBits.Core.Extensions;
 using AzureBits.Core.Models;
 using AzureBits.Core.Services;
 using Microsoft.WindowsAzure.Storage;
@@ -54,6 +55,20 @@ namespace AzureBits.Services
 
             // finally, upload the image into blob storage using the block blob reference
             var fileBytes = image.Data;
+            await blockBlob.UploadFromByteArrayAsync(fileBytes, 0, fileBytes.Length);
+        }
+
+        public async Task AddBitmapToBlobStorageAsync(Bitmap bitmap, string name, string contentType)
+        {
+            //  get the container reference
+            var container = GetImagesBlobContainer();
+
+            // using the container reference, get a block blob reference and set its type
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(name);
+            blockBlob.Properties.ContentType = contentType;
+
+            // finally, upload the image into blob storage using the block blob reference
+            var fileBytes = bitmap.ToJpegFormatByteArray();
             await blockBlob.UploadFromByteArrayAsync(fileBytes, 0, fileBytes.Length);
         }
 

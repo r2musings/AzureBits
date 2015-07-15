@@ -31,22 +31,6 @@ namespace AzureBits.Web.Services
             await queue.AddMessageAsync(message);
         }
 
-        //public T GetNextMessageFromQueue()
-        //{
-        //    var queue = GetQueue();
-
-        //    // Get the next message
-        //    CloudQueueMessage retrievedMessage = queue.GetMessage();
-
-        //    // deserialize to uploadedImage
-        //    T message = retrievedMessage.AsBytes.Deserialize<T>();
-
-        //    // delete the message from the queue
-        //    queue.DeleteMessage(retrievedMessage);
-
-        //    return message;
-        //}
-
         private CloudQueue GetQueue()
         {
             // get the storage account
