@@ -1,6 +1,5 @@
 ﻿using AzureBits.Core.Models;
 using AzureBits.Core.Services;
-using AzureBits.Web.Services;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(AzureBits.Web.App_Start.NinjectConfig), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(AzureBits.Web.App_Start.NinjectConfig), "Stop")]

@@ -10,5 +10,6 @@ namespace AzureBits.Core.Services
         Task<UploadedImage> CreateUploadedImage(HttpPostedFileBase file);
         Task AddImageToBlobStorageAsync(UploadedImage image);
         Task AddBitmapToBlobStorageAsync(Bitmap bitmap, string name, string contentType);
+        string GenerateThumbnailName(string originalImageName, int index);
     }
 }

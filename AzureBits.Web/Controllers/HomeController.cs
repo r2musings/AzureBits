@@ -31,9 +31,11 @@ namespace AzureBits.Web.Controllers
             {
                 HttpPostedFileBase file = Request.Files["uploadedFile"];
                 model = await _imageService.CreateUploadedImage(file);
+                
+                // hard-coded adding one thumbnail for now
+                model.Thumbnails.Add(new Thumbnail { Width = 200, Height = 300 });
+                
                 await _imageService.AddImageToBlobStorageAsync(model);
-              //  var uploadMessage = new UploadedImageMessage(model);
-                  
                 await _queueService.AddMessageToQueueAsync(model.Name, model);
             }
 

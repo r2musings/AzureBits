@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 using AzureBits.Core.Extensions;
@@ -70,6 +67,14 @@ namespace AzureBits.Services
             // finally, upload the image into blob storage using the block blob reference
             var fileBytes = bitmap.ToJpegFormatByteArray();
             await blockBlob.UploadFromByteArrayAsync(fileBytes, 0, fileBytes.Length);
+        }
+
+        public string GenerateThumbnailName(string originalImageName, int index)
+        {
+            var lastPeriodIndex = originalImageName.LastIndexOf(".", StringComparison.CurrentCultureIgnoreCase);
+            var prefix = originalImageName.Substring(0, lastPeriodIndex);
+            var suffix = originalImageName.Substring(lastPeriodIndex + 1);
+            return string.Format("{0}_tn{1:D3}.{2}", prefix, index+1, suffix);
         }
 
         private CloudBlobContainer GetImagesBlobContainer()

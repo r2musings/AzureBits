@@ -15,7 +15,6 @@ namespace AzureBits.ImageMessageWebJob
                 .WithConstructorArgument("containerName", ConfigurationManager.AppSettings["ImagesContainer"])
                 .WithConstructorArgument("imageRootPath", ConfigurationManager.AppSettings["ImageRootPath"])
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["BlobStorageConnectionString"].ConnectionString);
-
         }
     }
 }

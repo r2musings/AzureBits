@@ -1,9 +1,6 @@
 ﻿
-using System;
-
 namespace AzureBits.Core.Models
 {
-    [Serializable]
     public class Thumbnail
     {
         public int Width { get; set; }

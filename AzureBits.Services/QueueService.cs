@@ -4,7 +4,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
 
-namespace AzureBits.Web.Services
+namespace AzureBits.Services
 {
     public class QueueService<T> : IQueueService<T> where T : class, new()
     {
